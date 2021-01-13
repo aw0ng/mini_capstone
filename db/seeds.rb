@@ -3,5 +3,11 @@
 #
 # Examples:
 #
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+  camera = Camera.new({ name: 'Sony a7III', price: 1998, image_url: 'https://www.adorama.com/images/XLarge/isoa7m3.jpg', description: 'Sony Alpha a7 III 24MP UHD 4K Mirrorless Digital Camera (Body Only)' })
+  camera.save
+
+  camera = Camera.new({ name: 'Canon EOS 5D Mark IV', price: 2499, image_url: 'https://www.adorama.com/images/XLarge/ica5dm4.jpg', description: 'Canon EOS 5D Mark IV DSLR Body' })
+  camera.save
+
+  camera = Camera.new({ name: 'Nikon D850', price: 2997, image_url: 'https://www.adorama.com/images/XLarge/inkd850.jpg', description: 'Nikon D850 DSLR Camera Body' })
+  camera.save
