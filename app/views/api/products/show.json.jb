@@ -1,0 +1,7 @@
+{ 
+  id: @camera.id,
+  name: @camera.name,
+  price: @camera.price,
+  image_url: @camera.image_url,
+  description: @camera.description, 
+}
