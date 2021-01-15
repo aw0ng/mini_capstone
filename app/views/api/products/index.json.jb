@@ -1,4 +1,4 @@
-@all_cameras.map do |product|
+@all_products.map do |product|
   { 
     id: product.id,
     name: product.name,
