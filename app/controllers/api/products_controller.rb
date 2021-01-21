@@ -1,14 +1,20 @@
 class Api::ProductsController < ApplicationController
   def index
-    @products = Product.all
+    @products = Product
+      .name_search(params[:search])
+      .discounted(params[:discount])
+      .sorted(params[:sort], params[:sort_order])
+    render "index.json.jb"
+  end
+    # @products = Product.all
     
     # @products = Product.where("name ILIKE '%sony%'")
     # @products = Product.all.order(:price)
     # @products = Product.all.order(:price => :desc)
 
-    if params[:search]
-      @products = @products.where("name ILIKE ?", "%#{params[:search]}%")
-    end
+    # if params[:search]
+    #   @products = @products.where("name ILIKE ?", "%#{params[:search]}%")
+    # end
 
     # if params[:sort] && params[:sort_order]
     #   @products = @products.order("price #{params[:sort_order]}")
@@ -16,17 +22,17 @@ class Api::ProductsController < ApplicationController
     #      @products = @products.order(:id)
     # end
     
-    if params[:discount] == "true"
-      @products = @products.where("price < ?", 2000)
-    end
+    # if params[:discount] == "true"
+    #   @products = @products.where("price < ?", 2000)
+    # end
 
-    if params[:sort] == "price" && params[:sort_order] == "asc"
-      @products = @products.order(price: :asc)
-    elsif params[:sort] == "price" && params[:sort_order] == "desc"
-      @products = @products.order(price: :desc)
-    else
-      @products = @products.order(id: :asc)
-    end
+    # if params[:sort] == "price" && params[:sort_order] == "asc"
+    #   @products = @products.order(price: :asc)
+    # elsif params[:sort] == "price" && params[:sort_order] == "desc"
+    #   @products = @products.order(price: :desc)
+    # else
+    #   @products = @products.order(id: :asc)
+    # end
 
     # if params[:discount] == true
     #   @products = @products.where(discounted: true)
@@ -35,9 +41,6 @@ class Api::ProductsController < ApplicationController
     # if params[:discount]
     #   @products = @products.where("discount #{params[discounted: true]}")
     # end
-
-    render 'index.json.jb'
-  end
 
   def show
     @product = Product.find_by(id: params["id"])
