@@ -11,3 +11,9 @@
 
   camera = Product.new({ name: 'Nikon D850', price: 2997, image_url: 'https://www.adorama.com/images/XLarge/inkd850.jpg', description: 'Nikon D850 DSLR Camera Body' })
   camera.save
+
+
+  Supplier.create({ name: 'Adorama', email: 'service@adorama.com', phone_number: '800-123-4567' })
+  Supplier.create({ name: 'B&H Photo Video', email: 'service@bhphoto.com', phone_number: '800-321-7654' })
+  Supplier.create({ name: 'Best Buy', email: 'service@bestbuy.com', phone_number: '800-234-5678' })
+  
