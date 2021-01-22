@@ -4,7 +4,7 @@
   price: product.price,
   description: product.description, 
   supplier: product.supplier,
-  image: product.image,
+  images: product.images,
   discounted: product.is_discounted?,
   tax: product.tax,
   total: number_to_currency(product.total)
