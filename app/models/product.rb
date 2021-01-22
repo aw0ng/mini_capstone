@@ -38,4 +38,15 @@ class Product < ApplicationRecord
   def total
     price + tax #accounts for tax rate changing
   end
+
+  # belongs_to :supplier
+  # has_many :images
+  def supplier
+    # Look in the supplier's table for a supplier with an id that matches supplier_id
+    Supplier.find_by(id: supplier_id)
+  end
+  def image
+    # Look in the image's table for all the images with a product_id that matches id
+    Image.where(product_id: id)
+  end
 end
