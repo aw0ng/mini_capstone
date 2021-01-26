@@ -1,10 +1,15 @@
 class Api::ProductsController < ApplicationController
   def index
-    @products = Product
-      .name_search(params[:search])
-      .discounted(params[:discount])
-      .sorted(params[:sort], params[:sort_order])
-    render "index.json.jb"
+    @products = Product.all
+    if current_user
+      @products = Product
+        .name_search(params[:search])
+        .discounted(params[:discount])
+        .sorted(params[:sort], params[:sort_order])
+      render "index.json.jb"
+    else
+      render json: "[]"
+    end
   end
     # @products = Product.all
     
@@ -52,8 +57,11 @@ class Api::ProductsController < ApplicationController
       name: params["name"],
       price: params["price"],
       description: params["description"],
+      supplier_id: params["supplier_id"],
     )
     if @product.save
+      # not restful but allows user to create image when creating new product
+      Image.create(product_id: @product.id, url: params[:image_url])
       render 'show.json.jb'
     else
       render json: { errors: @product.errors.full_messages }, status: 422

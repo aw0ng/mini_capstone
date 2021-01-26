@@ -1,7 +1,11 @@
 class Api::SuppliersController < ApplicationController
   def index
     @suppliers = Supplier.all
-    render "index.json.jb"
+    if current_user
+      render "index.json.jb"
+    else
+      render json: "[]"
+    end
   end
 
   def show
