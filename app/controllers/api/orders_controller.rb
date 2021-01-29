@@ -19,21 +19,24 @@ class Api::OrdersController < ApplicationController
   end
   
   def create
-    product = Product.find_by(id: params[:product_id])
-    calculated_subtotal = product.price * params[:quantity].to_i
-    calculated_tax = calculated_subtotal * 0.09
-    # create tax variable to store tax rate separately
-    calculated_total = calculated_subtotal + calculated_tax
+    @carted_products = CartedProduct.where(status: "Carted")
+    index = 0
+    while index < @carted_products.length
+      @order = Order.new(
+        user_id: current_user.id,
+        subtotal: carted_product[index].product_id.price * carted_product[index].quantity
+        tax: subtotal * 0.09
+        # create tax variable to store tax rate separately
+        calculated_total = calculated_subtotal + calculated_tax
 
-    @order = Order.new(
-      user_id: current_user.id,
-      product_id: params[:product_id],
-      quantity: params[:quantity],
-      subtotal: calculated_subtotal,
-      tax: calculated_tax,
-      total: calculated_total
+        subtotal: calculated_subtotal,
+        tax: calculated_tax,
+        total: calculated_total
       )
-    @order.save
+      @order.save
+      index += 1
+    end
+
     render "show.json.jb"
   end
 end
