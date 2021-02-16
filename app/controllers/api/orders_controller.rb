@@ -20,7 +20,7 @@ class Api::OrdersController < ApplicationController
   
   def create
     carted_products = current_user.carted_products.where(status: "Carted")
-    index = 0
+    index = 0 # make this a .each
     while index < carted_products.length
       calculated_subtotal = carted_products[index].product.price * carted_products[index].quantity
       calculated_tax = calculated_subtotal * 0.09 # create tax variable to store tax rate separately
@@ -32,7 +32,7 @@ class Api::OrdersController < ApplicationController
         total: calculated_total
       )
       @order.save
-      carted_products.update_all(status: "Purchased", order_id: @order.id)
+      carted_products.update_all(status: "Purchased", order_id: @order.id) #update all replaces loop
       index += 1
     end
     render "show.json.jb"

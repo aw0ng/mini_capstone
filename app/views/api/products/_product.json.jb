@@ -5,6 +5,7 @@
   description: product.description, 
   supplier: product.supplier,
   images: product.images,
+  primary_image_url: product.primary_image_url,
   discounted: product.is_discounted?,
   tax: product.tax,
   total: number_to_currency(product.total)

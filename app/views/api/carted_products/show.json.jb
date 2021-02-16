@@ -1,1 +1,11 @@
 render partial: "carted_product.json.jb", locals: { carted_product: @carted_product }
+
+# {
+#  id: @carted_product.id,
+#   product_id: @carted_product.product_id,
+#   quantity: @carted_product.quantity,
+#   status: @carted_product.status,
+#   order_id: @carted_product.order_id
+# }
+
+# render partial: "carted_product.json.jb", locals: { carted_product: @carted_product }

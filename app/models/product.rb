@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+  has_many :orders
   has_many :carted_products
   has_many :orders, through: :carted_products
   has_many :category_products
@@ -50,8 +51,17 @@ class Product < ApplicationRecord
     # Look in the supplier's table for a supplier with an id that matches supplier_id
     Supplier.find_by(id: supplier_id)
   end
+  
   def images
     # Look in the image's table for all the images with a product_id that matches id
     Image.where(product_id: id)
+  end
+
+  def primary_image_url
+    if images.length > 0
+      images[0].url
+    else
+      ""
+    end
   end
 end
