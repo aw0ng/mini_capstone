@@ -51,7 +51,7 @@ class Product < ApplicationRecord
     # Look in the supplier's table for a supplier with an id that matches supplier_id
     Supplier.find_by(id: supplier_id)
   end
-  
+
   def images
     # Look in the image's table for all the images with a product_id that matches id
     Image.where(product_id: id)
@@ -61,7 +61,7 @@ class Product < ApplicationRecord
     if images.length > 0
       images[0].url
     else
-      ""
+      "https://www.escapeauthority.com/wp-content/uploads/2116/11/No-image-found.jpg"
     end
   end
 end
