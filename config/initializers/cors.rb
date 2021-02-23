@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'localhost:8080', 'mini-capstone.netlify.app'
+    origins 'localhost:8080', 'mini-capstone.netlify.app','vigilant-easley-ffdedf.netlify.app'
 
     resource '*',
       headers: :any,
